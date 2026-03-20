@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="IlmHub — O'zbekiston #1 online ta'lim platformasi. Professional kurslar orqali yangi ko'nikmalar o'rganing yoki o'z kurslaringizni yaratib pul ishlang.">
+<meta name="keywords" content="online kurslar, ta'lim, dasturlash, dizayn, marketing, Uzbekistan">
+<meta name="author" content="IlmHub">
+<meta property="og:title" content="IlmHub — Online Kurs Platformasi">
+<meta property="og:description" content="Professional kurslar orqali yangi ko'nikmalar o'rganing yoki o'z kurslaringizni yaratib pul ishlang">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <title>IlmHub — Online Kurs Platformasi</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23c9a84c'>📚</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -209,12 +217,43 @@ footer p{font-size:13px;color:var(--text3);margin-top:6px}
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  nav{padding:0 1rem;gap:1rem}
+  nav{padding:0 1rem;gap:1rem;height:56px}
   .nav-links{display:none}
-  .hero h1{font-size:2.2rem}
+  .logo{font-size:18px}
+  .lang-switcher{display:none}
+  .hero{padding:4rem 1rem 2rem}
+  .hero h1{font-size:2.2rem;line-height:1.1}
   .hero p{font-size:15px}
+  .hero-stats{gap:1.5rem}
+  .hstat strong{font-size:1.5rem}
+  .hstat span{font-size:11px}
+  .section{padding:3rem 1rem}
+  .sec-title{font-size:1.8rem}
+  .courses-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .how-steps{grid-template-columns:1fr}
   .cd-header{grid-template-columns:1fr}
   .cd-icon{min-width:auto}
+  .modal{max-width:90vw;padding:1.5rem}
+  .form-row{grid-template-columns:1fr}
+  .admin-grid{grid-template-columns:1fr}
+  .admin-table{font-size:12px}
+  .admin-table th,.admin-table td{padding:8px 10px}
+}
+
+@media(max-width:480px){
+  nav{padding:0 0.75rem}
+  .logo{font-size:16px}
+  .btn-accent,.btn-ghost{padding:6px 14px;font-size:12px}
+  .hero h1{font-size:1.8rem}
+  .hero p{font-size:14px}
+  .hero-btns{flex-direction:column}
+  .btn-large{width:100%}
+  .section{padding:2rem 1rem}
+  .sec-title{font-size:1.5rem}
+  .hero-stats{flex-direction:column;gap:1rem}
+  .modal{max-width:95vw}
+  .tgrid{grid-template-columns:1fr}
 }
 
 .cab-tab{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;border:none;color:var(--text2);font-family:Mulish,sans-serif;transition:.2s;text-align:center}
@@ -869,7 +908,9 @@ const defaultStudents=[
 let courses=getData(COURSES_KEY,defaultCourses);
 let lessons=getData(LESSONS_KEY,defaultLessons);
 let plans=getData(PLANS_KEY,defaultPlans);
-let adminPass=getData(ADMIN_PASS_KEY,'boqboqboq');
+// IMPORTANT: Change this default password immediately after first login!
+// Admin password is stored in localStorage. Change it in Settings tab.
+let adminPass=getData(ADMIN_PASS_KEY,'admin123456');
 let currentLang='uz';
 let isAdmin=false;
 
@@ -1117,6 +1158,8 @@ const reviews=[
   {name:"Sardor T.",role:"IT student",text:{uz:"Ingliz tili kursini tugatdim, hozir ish topib oldim. Juda yaxshi platforma!",ru:"Закончил курс английского, теперь нашёл работу. Отличная платформа!",en:"Finished the English course and got a job. Amazing platform!"},stars:5},
   {name:"Malika Y.",role:"Dizayner",text:{uz:"Figma kursi juda professional. Murabbiй har bir savolga javob berdi.",ru:"Курс Figma очень профессиональный. Преподаватель отвечал на каждый вопрос.",en:"The Figma course is very professional. The instructor answered every question."},stars:5},
   {name:"Jasur K.",role:"Tadbirkor",text:{uz:"Marketing kursidan keyin Instagram sahifam o'sdi. Amaliy bilimlar!",ru:"После курса маркетинга мой Instagram вырос. Практические знания!",en:"After the marketing course my Instagram grew. Practical knowledge!"},stars:5},
+  {name:"Nodira A.",role:"Dasturchi",text:{uz:"Python kursi juda oson tushuniladi. Murabbiй juda sabr-toqat bilan o'rgatdi.",ru:"Курс Python очень понятен. Преподаватель терпеливо объяснял.",en:"Python course is very easy to understand. Great teacher!"},stars:5},
+  {name:"Karim B.",role:"Talaba",text:{uz:"Sertifikat haqiqatan ham ish topishga yordam berdi. Tavsiya qilaman!",ru:"Сертификат действительно помог найти работу. Рекомендую!",en:"The certificate really helped me get a job. Highly recommended!"},stars:4},
 ];
 function renderReviews(){
   document.getElementById('reviews-grid').innerHTML=reviews.map(r=>`
